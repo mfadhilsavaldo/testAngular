@@ -1,0 +1,39 @@
+<div mat-dialog-title>
+  <span>Edit Data</span>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close color="warn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <!-- <form [formGroup]="dataform"> -->
+
+  <div>
+    <mat-form-field appearance="outline" class="form">
+      <mat-label>Nama</mat-label>
+      <input matInput placeholder="Nama" [formControl]="dataform.controls['nama']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="form">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" [formControl]="dataform.controls['email']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="form">
+      <mat-label>Umur</mat-label>
+      <input matInput placeholder="Umur" [formControl]="dataform.controls['umur']">
+    </mat-form-field>
+  </div>
+
+
+  <!-- </form> -->
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [disabled]="!dataform.valid" (click)="onSave()">Save</button>
+</mat-dialog-actions>

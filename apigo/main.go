@@ -17,10 +17,25 @@ func KoneksiGo() *gorm.DB {
 
 	return db
 }
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		// c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		// c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		// c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
+}
 
 func main() {
 	r := gin.Default()
-	r.GET("/read", func(c *gin.Context) {
+	r.GET("/read", CORSMiddleware(), func(c *gin.Context) {
 		db_go := KoneksiGo()
 		var callback = gin.H{}
 		status := 200
@@ -33,7 +48,7 @@ func main() {
 
 		c.JSON(status, callback)
 	})
-	r.POST("/create", func(context *gin.Context) {
+	r.POST("/create", CORSMiddleware(), func(context *gin.Context) {
 		db_go := KoneksiGo()
 		var callback = gin.H{}
 		nama := context.PostForm("nama")
@@ -45,16 +60,16 @@ func main() {
 		callback["email"] = email
 		callback["umur"] = umur
 
-		data := map[string]interface{}{
+		result := map[string]interface{}{
 			"nama":  nama,
 			"email": email,
 			"umur":  umur,
 		}
-		create := db_go.Table("user").Create(&data)
+		create := db_go.Table("user").Create(&result)
 
 		if create.Error == nil {
 			callback["success"] = true
-			callback["data"] = data
+			callback["msg"] = "success tambah data"
 		} else {
 			callback["success"] = false
 			callback["err"] = create.Error
@@ -63,7 +78,7 @@ func main() {
 		context.JSON(200, callback)
 	})
 
-	r.POST("/edit", func(context *gin.Context) {
+	r.POST("/edit", CORSMiddleware(), func(context *gin.Context) {
 		db_go := KoneksiGo()
 		var callback = gin.H{}
 		iduser := context.PostForm("iduser")
@@ -89,7 +104,7 @@ func main() {
 		context.JSON(200, callback)
 	})
 
-	r.POST("/delete", func(context *gin.Context) {
+	r.POST("/delete", CORSMiddleware(), func(context *gin.Context) {
 		db_go := KoneksiGo()
 		var callback = gin.H{}
 		iduser := context.PostForm("iduser")
