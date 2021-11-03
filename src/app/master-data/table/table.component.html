@@ -1,14 +1,24 @@
-<table id="customers">
-  <tr>
-    <th>No.</th>
-    <th>Nama</th>
-    <th>Email</th>
-    <th>Umur</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
+<mat-card>
+  <h1 style="text-align: center;">Master Akun</h1>
+  <button class="add" fxFlexAlign="center" mat-raised-button (click)="openAddDialog()" color="accent">
+    <mat-icon>add</mat-icon> Create
+  </button>
+  <br>
+  <br>
 
-</table>
+  <table id="customers">
+    <tr>
+      <th>No.</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Umur</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+      <td>22</td>
+    </tr>
+
+  </table>
+</mat-card>
