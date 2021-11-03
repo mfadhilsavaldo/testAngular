@@ -1,0 +1,61 @@
+<mat-toolbar class="header-color" color="primary">
+  <button mat-icon-button class="" (click)="drawer.toggle()">
+    <mat-icon>reorder</mat-icon>
+  </button>
+
+  <span>SIM Koperasi</span>
+  <span fxFlex></span>
+  <div>Hi, User</div>
+  <button mat-icon-button class="">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button class="" [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>portrait</mat-icon>
+      <span>Profil</span>
+    </button>
+    <button mat-menu-item [routerLink]="'login'">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+
+<div class="sidenav-container">
+  <mat-sidenav-container class="" autosize>
+    <mat-sidenav #drawer mode="side" opened>
+      <mat-nav-list>
+        <mat-list-item class="item-menu" [routerLink]="'dashboard'">
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </mat-list-item>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="item-menu">
+            <mat-icon>account_balance_wallet</mat-icon>
+            <span class="item-menu-text">Master Data</span>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <mat-list-item class="item-submenu" [routerLink]="'master-data/table'">
+              <!-- <mat-icon>grid_view</mat-icon> -->
+              <span>Table</span>
+            </mat-list-item>
+            <mat-list-item class="item-submenu" [routerLink]="'master-data/master-table'">
+              <!-- <mat-icon>table_chart</mat-icon> -->
+              <span>Master Table</span>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content cdkScrollable>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

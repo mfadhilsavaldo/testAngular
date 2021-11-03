@@ -1,0 +1,73 @@
+//===================== SIDENAV =================
+//===============================================
+.sidenav-container {
+  display: flex;
+  height: calc(100% - 70px);
+
+  mat-sidenav-container {
+    width: 100%;
+    flex-direction: column;
+
+    ::-webkit-scrollbar-thumb {
+      background: #55aa55;
+    }
+  }
+
+  .header-color {
+    background: green;
+  }
+
+
+  mat-sidenav {
+    display: flex;
+    width: 300px;
+
+    .mat-drawer-inner-container::-webkit-scrollbar {
+      width: 2px;
+    }
+  }
+
+  mat-expansion-panel {
+    border-radius: 0px;
+    box-shadow: none;
+    background: none;
+
+    mat-expansion-panel-header {
+      padding: 3px 20px;
+
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .item-menu {
+    font-size: 14px;
+    border-bottom: 1px solid #EEEEEE;
+
+    .item-menu-text {
+      margin-top: 2px;
+    }
+  }
+
+  .item-submenu {
+    font-size: 12px;
+    padding: 0px;
+
+    mat-icon {
+      margin-right: 3px;
+    }
+  }
+}
+
+mat-sidenav-content {
+  padding: 0px;
+}
+
+span {
+  font-size: 10pt;
+}
+
+.mat-toolbar.mat-primary {
+  background: #00c4ba;
+}
